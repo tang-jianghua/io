@@ -42,9 +42,13 @@ public class ServerSocketMultiplexingSingleThread {
     static Selector selector;
     public static void m() {
         try (final ServerSocketChannel open = ServerSocketChannel.open();
-             //多路复用模式，select函数 在内核，可以分为select/poll和epoll
-             //在java语言中抽象为Selector
              ) {
+            //多路复用模式，select函数 在内核，可以分为select/poll和epoll
+            //在java语言中抽象为Selector
+            //linux jvm默认选择epoll，可以通过
+            //-Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.EPollSelectorProvider
+           // -Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.PollSelectorProvider
+            //来选择
             selector = Selector.open();
             //绑定一个端口
             open.bind(new InetSocketAddress(9090), BACK_LOG);
