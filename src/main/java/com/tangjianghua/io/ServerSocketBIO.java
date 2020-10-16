@@ -42,6 +42,7 @@ public class ServerSocketBIO {
             System.out.println("server listen 9090 start.");
 
             while (true) {
+                System.in.read();
                 final Socket client = serverSocket.accept();
                 //超时
                 client.setKeepAlive(CLI_KEEPALIVE);

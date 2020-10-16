@@ -13,12 +13,12 @@ import java.util.Scanner;
 public class OSFileIO {
 
     static byte[] data = "123456789\n".getBytes();
-    static String path = "d:/file/io/out.txt";
-//    static String path = "/home/tangjianghua/io/out.txt";
+    //static String path = "d:/file/io/out.txt";
+    static String path = "/home/tangjianghua/io/out.txt";
 
     public static void main(String[] args) {
-
-        final Scanner scanner = new Scanner(System.in);
+        whatIsByteBuffer();
+     /*   final Scanner scanner = new Scanner(System.in);
         final String next = scanner.next();
         switch (next) {
             case "0":
@@ -29,7 +29,7 @@ public class OSFileIO {
                 newIO2();
             case "4":
                 newIO();
-        }
+        }*/
     }
 
     public static void traditionalIO() {
@@ -37,12 +37,15 @@ public class OSFileIO {
         File file = new File(path);
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
             while (true) {
+                Thread.sleep(1000);
                 fileOutputStream.write(data);
             }
 //            bufferedOutputStream.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -123,7 +126,7 @@ public class OSFileIO {
         }
     }
 
-    public void whatByteBuffer() {
+    public static void whatIsByteBuffer() {
         final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
         System.out.println("position:" + byteBuffer.position());
         System.out.println("limit:" + byteBuffer.limit());
@@ -148,6 +151,9 @@ public class OSFileIO {
         System.out.println("-------------compact......");
         System.out.println("mark:" + byteBuffer.mark());
 
+        byteBuffer.flip();
+        System.out.println("-------------flip......");
+        System.out.println("mark:" + byteBuffer.mark());
 
         byteBuffer.clear();
         System.out.println("-------------clear......");

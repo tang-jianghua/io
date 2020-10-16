@@ -76,7 +76,7 @@ public class ServerSocketMultiplexingSingleThread {
                         if (key.isAcceptable()) {
                             acceptHandler(key);
                         } else if (key.isReadable()) {
-                            readHandler(key);
+                                readHandler(key);
                         } else if (key.isWritable()) {
                             writeHandler(key);
                         }
