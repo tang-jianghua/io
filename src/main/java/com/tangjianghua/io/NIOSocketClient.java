@@ -17,7 +17,7 @@ public class NIOSocketClient {
         try {
             final SocketChannel open = SocketChannel.open();
             open.configureBlocking(false);
-            open.connect(new InetSocketAddress("192.168.8.7",9090));
+            open.connect(new InetSocketAddress("localhost",8081));
             final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             final String s = bufferedReader.readLine();
             final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
